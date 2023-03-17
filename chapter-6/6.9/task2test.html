@@ -1,0 +1,16 @@
+<!doctype html>
+<script src="https://ru.js.cx/test/libs.js"></script>
+<script src="test2.js"></script>
+<script>
+
+function delay(func, timeout) {
+   
+    return function around(...args) {
+        setTimeout(() => func.call(this, ...args), timeout); 
+    }
+
+}
+
+</script>
+
+</html>

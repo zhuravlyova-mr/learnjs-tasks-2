@@ -1,0 +1,20 @@
+<!doctype html>
+<script src="https://ru.js.cx/test/libs.js"></script>
+<script src="test1.js"></script>
+<script>
+
+function spy(func) {
+  
+    function around(...args) {        
+      around.calls.push(args);
+      return func.call(this, ...args);
+    }
+
+    around.calls = [];
+    return around;
+}
+
+
+</script>
+
+</html>

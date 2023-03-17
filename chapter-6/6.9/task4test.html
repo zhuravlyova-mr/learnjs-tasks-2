@@ -1,0 +1,32 @@
+<!doctype html>
+<script src="https://ru.js.cx/test/libs.js"></script>
+<script src="test4.js"></script>
+<script>
+
+function throttle(func, timeout) {
+   
+    let isPassed = true;
+    let lastArgs = null;
+    let lastContext = null;
+
+    return function around(...args) {   
+        if (!isPassed) {
+            lastArgs = arguments;
+            lastContext = this;
+            return;
+        }
+        func.apply(this, args);
+        isPassed = false;
+        setTimeout(() => {
+            isPassed = true;
+            if (lastArgs) {
+                around.call(lastContext, ...lastArgs);
+                lastContext = null;
+                lastArgs = null;
+            }
+        }, timeout);
+    }
+}
+</script>
+
+</html>
